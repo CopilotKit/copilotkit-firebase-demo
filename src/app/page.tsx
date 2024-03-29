@@ -31,29 +31,13 @@ function InsideHome() {
       handler: async ({ message }) => {
         setMessage(message);
       },
-      render: (props) => {
-        return (
-          <div style={{ backgroundColor: "black", color: "white" }}>
-            <div>Status: {props.status}</div>
-            <div>Message: {props.args.message}</div>
-          </div>
-        );
-      },
     },
     []
   );
   return (
-    <>
-      <div>{message}</div>
-      <CopilotTextarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        autosuggestionsConfig={{
-          textareaPurpose: "an outline of a presentation about elephants",
-          chatApiConfigs: {},
-        }}
-      />
-    </>
+    <div className="h-screen w-full flex items-center justify-center text-2xl">
+      {message}
+    </div>
   );
 }
 export default function Home() {
@@ -65,6 +49,7 @@ export default function Home() {
           title: "Presentation Copilot",
           initial: "Hi you! 👋 I can give you a presentation on any topic.",
         }}
+        clickOutsideToClose={false}
       >
         <InsideHome />
       </CopilotSidebar>
